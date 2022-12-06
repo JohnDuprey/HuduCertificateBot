@@ -1,0 +1,11 @@
+{
+  "scriptFile": "../lib/OrchestrationTriggers.psm1",
+  "entryPoint": "Start-CertificateOrchestrator",
+  "bindings": [
+    {
+      "name": "Context",
+      "type": "orchestrationTrigger",
+      "direction": "in"
+    }
+  ]
+}

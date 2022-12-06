@@ -1,0 +1,11 @@
+{
+  "scriptFile": "../lib/ActivityTriggers.psm1",
+  "entryPoint": "Get-CertificatesQueue",
+  "bindings": [
+    {
+      "name": "Name",
+      "type": "activityTrigger",
+      "direction": "in"
+    }
+  ]
+}

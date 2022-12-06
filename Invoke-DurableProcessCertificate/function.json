@@ -1,0 +1,11 @@
+{
+  "scriptFile": "../lib/ActivityTriggers.psm1",
+  "entryPoint": "Invoke-DurableProcessCertificate",
+  "bindings": [
+    {
+      "name": "Certificate",
+      "type": "activityTrigger",
+      "direction": "in"
+    }
+  ]
+}

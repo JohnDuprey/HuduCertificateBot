@@ -1,6 +1,6 @@
 {
   "scriptFile": "../lib/OrchestrationTriggers.psm1",
-  "entryPoint": "Start-SubscriptionsOrchestrator",
+  "entryPoint": "Start-CertificateOrchestrator",
   "bindings": [
     {
       "name": "Context",

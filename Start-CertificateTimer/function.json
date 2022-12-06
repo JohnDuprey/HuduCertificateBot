@@ -1,12 +1,12 @@
 {
   "scriptFile": "../lib/TimerTriggers.psm1",
-  "entryPoint": "Start-SubscriptionsTimer",
+  "entryPoint": "Start-CertificateTimer",
   "bindings": [
     {
       "name": "Timer",
       "type": "timerTrigger",
       "direction": "in",
-      "schedule": "0 * * * * *"
+      "schedule": "0 */30 * * * *"
     },
     {
       "name": "starter",

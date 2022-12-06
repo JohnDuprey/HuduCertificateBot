@@ -11,13 +11,13 @@ function Get-HuduCertificates {
                     position     = 1
                 },
                 @{
-                    label        = 'Valid From'
+                    label        = 'Cert Issued'
                     field_type   = 'Date'
                     show_in_list = 'true'
                     position     = 2
                 },
                 @{
-                    label        = 'Valid To'
+                    label        = 'Cert Expires'
                     field_type   = 'Date'
                     expiration   = 'true'
                     show_in_list = 'true'
@@ -60,10 +60,22 @@ function Get-HuduCertificates {
                     position     = 9
                 },
                 @{
+                    label        = 'Signature Algorithm'
+                    field_type   = 'Text'
+                    show_in_list = 'false'
+                    position     = 10
+                },
+                @{
+                    label        = 'Enhanced Key Usage List'
+                    field_type   = 'Text'
+                    show_in_list = 'false'
+                    position     = 11
+                },
+                @{
                     label        = 'Notes'
                     field_type   = 'RichText'
                     show_in_list = 'false'
-                    position     = 10
+                    position     = 12
                 }
             )
             $Layout = (New-HuduAssetLayout -Name $env:HuduSSLCertAssetLayoutName -Icon 'fas fa-lock' -Color '00adef' -icon_color '#ffffff' -include_passwords $false -include_photos $false -include_comments $false -include_files $true -Fields $AssetLayoutFields).asset_layout

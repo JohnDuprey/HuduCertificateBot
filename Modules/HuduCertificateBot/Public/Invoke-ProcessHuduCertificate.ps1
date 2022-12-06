@@ -9,7 +9,7 @@ function Invoke-ProcessHuduCertificate {
             $Notes = ($Certificate.fields | Where-Object { $_.label -eq 'Notes' }).value
             #Write-Output $OrigCertificateString
 
-            $CertificateString = $OrigCertificateString -replace '-----BEGIN CERTIFICATE-----' -replace '-----END CERTIFICATE-----'
+            $CertificateString = $OrigCertificateString -replace '.*-----BEGIN CERTIFICATE-----' -replace '-----END CERTIFICATE-----.*'
             $CertDetails = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new([System.Convert]::FromBase64String($CertificateString))
 
             #Write-Output $CertDetails
@@ -24,8 +24,6 @@ function Invoke-ProcessHuduCertificate {
             }
             try {
                 $IssuerProps = [regex]::Split($CertDetails.Issuer, $csvSplit, $RegexOptions::ExplicitCapture) 
-                #$IssuerProps
-
                 $Issuer = $IssuerProps | ForEach-Object { 
                     $key, $value = $_ -split '='
                     @{$Key = $Value -replace '"' } 
@@ -51,17 +49,20 @@ function Invoke-ProcessHuduCertificate {
                 SubjectAlternativeNames = [string]($CertDetails.DnsNameList -join ', ')
                 Certificate             = $OrigCertificateString
                 Serial                  = $CertDetails.SerialNumber
+                EnhancedKeyUsageList    = [string]($CertDetails.EnhancedKeyUsageList -join ', ')
             }
 
             $HuduAssetFields = @{
                 common_name              = "$($Subject.CN)"
-                valid_from               = $CertDetails.NotBefore.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss.fffZ')
-                valid_to                 = $CertDetails.NotAfter.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss.fffZ')
+                cert_issued              = $CertDetails.NotBefore.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss.fffZ')
+                cert_expires             = $CertDetails.NotAfter.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss.fffZ')
                 issuer                   = "$IssuerName"
                 organization             = "$IssuerOrg"
                 country                  = "$Country"
                 subject_alternative_name = [string]($CertDetails.DnsNameList -join ', ')
                 serial                   = $CertDetails.SerialNumber
+                signature_algorithm      = "$($CertDetails.SignatureAlgorithm.FriendlyName)"
+                enhanced_key_usage_list  = [string]($CertDetails.EnhancedKeyUsageList -join ', ')
                 notes                    = $Notes
             }
 
@@ -76,7 +77,7 @@ function Invoke-ProcessHuduCertificate {
                 TableRow     = $CertRow
             }
             Set-TableData @CertificateUpdate
-            Write-Output "Certificate Update Complete"
+            Write-Output 'Certificate Update Complete'
         }
         else {
             Write-Output 'ERROR: Unable to connect to Hudu'

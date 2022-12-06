@@ -1,4 +1,4 @@
-function Start-SubscriptionsOrchestrator {
+function Start-CertificateOrchestrator {
     Param($Context)
 
     try {
@@ -23,8 +23,8 @@ function Start-SubscriptionsOrchestrator {
         Write-Host 'Completed.'
     }
     catch {
-        Write-Host "EXCEPTION processing subscriptions $($_.Exception.Message)"
+        Write-Host "EXCEPTION processing certificates $($_.Exception.Message)"
     }
 }
 
-Export-ModuleMember @('Start-SubscriptionsOrchestrator')
+Export-ModuleMember @('Start-CertificateOrchestrator')

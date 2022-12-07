@@ -38,7 +38,8 @@ function Invoke-ProcessHuduCertificate {
                     else {
                         $Callout = 'danger'
                     }
-                    $CertInfo = '<p class="callout callout-{0}">{1}</p>' -f $Callout, ($SslErrors -join '<br />')
+                    $SslLabs = Get-LinkBlock -Url ('https://www.ssllabs.com/ssltest/analyze.html?viaform=on&d={0}&hideResults=on' -f $Certificate.name) -Title 'SSL Labs' -Icon 'fas fa-external-link'
+                    $CertInfo = '{0}<p class="callout callout-{1}">{2}</p>' -f $SslLabs, $Callout, ($SslErrors -join '<br />')
                 }
                 catch {
                     $OrigCertificateString = ($Certificate.fields | Where-Object { $_.label -eq 'Certificate' }).value

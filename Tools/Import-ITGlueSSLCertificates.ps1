@@ -42,11 +42,11 @@ if ($Companies) {
             $CompanyCerts = Get-HuduAssets -CompanyId $HuduCompanyId -AssetLayoutId $SslLayout.id
 
             foreach ($Cert in $Company.Group) {
-                Write-Host "`r`nCertificate: $($Cert.name)"
+                Write-Host "`r`nCertificate: $($Cert.host)"
                 $WebsiteMatch = $false
                 $CertMatch = $false
                 foreach ($CompanyWebsite in $CompanyWebsites) {
-                    if ($CompanyWebsite.name -match [Regex]::Escape($Cert.name)) {
+                    if ($CompanyWebsite.name -match [Regex]::Escape($Cert.name) -or $CompanyWebsite.name -match [Regex]::Escape($Cert.host)) {
                         $WebsiteMatch = $true
                         Write-Host '- Matched cert to website'
 
@@ -62,10 +62,21 @@ if ($Companies) {
                 if (-not $WebsiteMatch) {
                     Write-Host '- Site not matched, checking certificates'
                     foreach ($CompanyCert in $CompanyCerts) {
-                        if ($CompanyCerts.name -eq $Cert.name -or $CompanyCerts.name -eq $Cert.host) {
+                        if ($CompanyCert.name -eq $Cert.name -or $CompanyCerts.name -eq $Cert.host) {
                             $CertMatch = $true
-                            Write-Host '- Certificate matched'
-                            break
+                            Write-Host '- Certificate matched, updating'
+                            if ($Cert.host) {
+                                $UpdateField = @{
+                                    enable_https_check = $true
+                                    certificate        = ($CompanyCert.fields | Where-Object { $_.label -eq 'Certificate' }).value
+                                    notes              = $Cert.notes
+                                }
+                                try {
+                                    #Set-HuduAsset -CompanyId $HuduCompany.id -asset_id $CompanyCert.id -AssetLayoutId $SslLayout.id -Name $Cert.host -Fields $UpdateField -ErrorAction Stop
+                                }
+                                catch {}
+                                break
+                            }
                         }
                     }
                     if (-not $CertMatch) {
@@ -73,6 +84,9 @@ if ($Companies) {
                         $NewCertFields = @{
                             certificate = $Cert.certificate
                             notes       = $Cert.notes
+                        }
+                        if ($Cert.host) { 
+                            $NewCertFields.enable_https_check = $true
                         }
                         New-HuduAsset -CompanyId $HuduCompany.Id -AssetLayoutId $SslLayout.id -Name $Cert.name -Fields $NewCertFields
                         break

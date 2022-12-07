@@ -104,7 +104,7 @@ function Invoke-ProcessHuduCertificate {
 
             #Write-Output ($HuduAssetFields | ConvertTo-Json)
 
-            Set-HuduAsset -asset_id $Certificate.id -Name $Subject.CN -company_id $($Certificate.company_id) -asset_layout_id $Certificate.asset_layout_id -Fields $HuduAssetFields | Out-Null
+            Set-HuduAsset -asset_id $Certificate.id -company_id $($Certificate.company_id) -asset_layout_id $Certificate.asset_layout_id -Fields $HuduAssetFields | Out-Null
 
             $CertificateUpdate = @{
                 TableName    = 'HuduCertificates'

@@ -38,7 +38,7 @@ function Invoke-ProcessHuduCertificate {
                 else {
                     $Callout = 'danger'
                 }
-                $CertInfo = '<p class="callout callout-{0}">{1}</p>' -f $Callout, ($SshErrors -join "<br />")
+                $CertInfo = '<p class="callout callout-{0}">{1}</p>' -f $Callout, ($SslErrors -join "<br />")
             }
             else {
                 $OrigCertificateString = ($Certificate.fields | Where-Object { $_.label -eq 'Certificate' }).value

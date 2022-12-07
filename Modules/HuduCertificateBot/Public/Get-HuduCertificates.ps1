@@ -5,77 +5,92 @@ function Get-HuduCertificates {
         if (!$Layout) {
             $AssetLayoutFields = @(
                 @{
+                    label        = 'Certificate Info'
+                    field_type   = 'RichText'
+                    show_in_list = 'false'
+                    position     = 1
+                }
+                @{
+                    label        = 'Enable HTTPS Check'
+                    field_type   = 'CheckBox'
+                    show_in_list = 'true'
+                    hint         = 'Enable HTTPS scanning on the Asset name (name should be in hostname.com:port format)'
+                    position     = 2
+                },
+                @{
                     label        = 'Common Name'
                     field_type   = 'Text'
                     show_in_list = 'true'
-                    position     = 1
+                    position     = 3
                 },
                 @{
                     label        = 'Cert Issued'
                     field_type   = 'Date'
                     show_in_list = 'true'
-                    position     = 2
+                    position     = 4
                 },
                 @{
                     label        = 'Cert Expires'
                     field_type   = 'Date'
                     expiration   = 'true'
                     show_in_list = 'true'
-                    position     = 3
+                    position     = 5
                 },
                 @{
                     label        = 'Issuer'
                     field_type   = 'Text'
                     show_in_list = 'true'
-                    position     = 4
+                    position     = 6
                 },
                 @{
                     label        = 'Organization'
                     field_type   = 'Text'
                     show_in_list = 'true'
-                    position     = 5
+                    position     = 7
                 },
                 @{
                     label        = 'Country'
                     field_type   = 'Text'
                     show_in_list = 'true'
-                    position     = 6
+                    position     = 8
                 },
                 @{
                     label        = 'Subject Alternative Name'
                     field_type   = 'Text'
                     show_in_list = 'false'
-                    position     = 7
+                    position     = 9
                 },
                 @{
                     label        = 'Certificate'
                     field_type   = 'Text'
                     show_in_list = 'false'
-                    position     = 8
+                    required     = 'true'
+                    hint         = 'Base64 encoded certificate'
+                    position     = 10
                 },
                 @{
                     label        = 'Serial'
                     field_type   = 'Text'
                     show_in_list = 'false'
-                    position     = 9
+                    position     = 11
                 },
                 @{
                     label        = 'Signature Algorithm'
                     field_type   = 'Text'
                     show_in_list = 'false'
-                    position     = 10
+                    position     = 12
                 },
                 @{
                     label        = 'Enhanced Key Usage List'
                     field_type   = 'Text'
                     show_in_list = 'false'
-                    position     = 11
+                    position     = 13
                 },
                 @{
                     label        = 'Notes'
                     field_type   = 'RichText'
                     show_in_list = 'false'
-                    position     = 12
+                    position     = 14
                 }
             )
             $Layout = (New-HuduAssetLayout -Name $env:HuduSSLCertAssetLayoutName -Icon 'fas fa-lock' -Color '00adef' -icon_color '#ffffff' -include_passwords $false -include_photos $false -include_comments $false -include_files $true -Fields $AssetLayoutFields).asset_layout

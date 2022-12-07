@@ -11,34 +11,40 @@ function Invoke-ProcessHuduCertificate {
             $EnableHttpsCheck = ($Certificate.fields | Where-Object { $_.label -eq 'Enable HTTPS Check' }).value
 
             if ($EnableHttpsCheck) {
-                $Url = 'https://{0}' -f $Certificate.name
-                $HttpsCheck = Get-ServerCertificateValidation -Url $Url
-                $CertDetails = $HttpsCheck.Certificate
+                try {
+                    $Url = 'https://{0}' -f $Certificate.name
+                    $HttpsCheck = Get-ServerCertificateValidation -Url $Url
+                    $CertDetails = $HttpsCheck.Certificate
                 
-                $Pem = New-Object System.Text.StringBuilder
-                $Pem.AppendLine('-----BEGIN CERTIFICATE-----')
-                $Pem.AppendLine([System.Convert]::ToBase64String($CertDetails.RawData, 1))
-                $Pem.AppendLine('-----END CERTIFICATE-----')
-                $OrigCertificateString = $Pem.ToString()
-
-                $SslErrors = foreach ($SslError in $HttpsCheck.SslErrors) {
-                    switch ($SslError) {
-                        'None' { 'No SSL policy errors.' }
-                        'RemoteCertificateChainErrors' { 
-                            $HttpsCheck.Chain.ChainStatus.StatusInformation
+                    $Pem = New-Object System.Text.StringBuilder
+                    $Pem.AppendLine('-----BEGIN CERTIFICATE-----')
+                    $Pem.AppendLine([System.Convert]::ToBase64String($CertDetails.RawData, 1))
+                    $Pem.AppendLine('-----END CERTIFICATE-----')
+                    $OrigCertificateString = $Pem.ToString()
+                    $SslErrors = foreach ($SslError in $HttpsCheck.SslErrors) {
+                        switch ($SslError) {
+                            'None' { 'No SSL policy errors.' }
+                            'RemoteCertificateChainErrors' { 
+                                $HttpsCheck.Chain.ChainStatus.StatusInformation
+                            }
+                            'RemoteCertificateNameMismatch' { 'Certificate name mismatch.' }
+                            'RemoteCertificateNotAvailable' { 'Certificate not available.' }
                         }
-                        'RemoteCertificateNameMismatch' { 'Certificate name mismatch.' }
-                        'RemoteCertificateNotAvailable' { 'Certificate not available.' }
                     }
-                }
 
-                if ($SslErrors -match 'No SSL policy errors.') {
-                    $Callout = 'success'
+                    if ($SslErrors -match 'No SSL policy errors.') {
+                        $Callout = 'success'
+                    }
+                    else {
+                        $Callout = 'danger'
+                    }
+                    $CertInfo = '<p class="callout callout-{0}">{1}</p>' -f $Callout, ($SslErrors -join '<br />')
                 }
-                else {
-                    $Callout = 'danger'
+                catch {
+                    $OrigCertificateString = ($Certificate.fields | Where-Object { $_.label -eq 'Certificate' }).value
+                    $CertificateString = $OrigCertificateString -replace '.*-----BEGIN CERTIFICATE-----' -replace '-----END CERTIFICATE-----.*'
+                    $CertDetails = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new([System.Convert]::FromBase64String($CertificateString))
                 }
-                $CertInfo = '<p class="callout callout-{0}">{1}</p>' -f $Callout, ($SslErrors -join '<br />')
             }
             else {
                 $OrigCertificateString = ($Certificate.fields | Where-Object { $_.label -eq 'Certificate' }).value
@@ -86,7 +92,7 @@ function Invoke-ProcessHuduCertificate {
             }
 
             $HuduAssetFields = @{
-                certificate_info          = $CertInfo
+                certificate_info         = $CertInfo
                 enable_https_check       = $EnableHttpsCheck
                 common_name              = "$($Subject.CN)"
                 cert_issued              = $CertDetails.NotBefore.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss.fffZ')

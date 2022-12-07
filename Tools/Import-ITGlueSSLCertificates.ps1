@@ -72,11 +72,11 @@ if ($Companies) {
                                     notes              = $Cert.notes
                                 }
                                 try {
-                                    Set-HuduAsset -CompanyId $HuduCompany.id -AssetId $CompanyCert.id -AssetLayoutId $SslLayout.id -Name $Cert.host -Fields $UpdateField
+                                    #Set-HuduAsset -CompanyId $HuduCompany.id -asset_id $CompanyCert.id -AssetLayoutId $SslLayout.id -Name $Cert.host -Fields $UpdateField -ErrorAction Stop
                                 }
                                 catch {}
+                                break
                             }
-                            break
                         }
                     }
                     if (-not $CertMatch) {

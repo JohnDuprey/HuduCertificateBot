@@ -38,7 +38,7 @@ function Invoke-ProcessHuduCertificate {
                 else {
                     $Callout = 'danger'
                 }
-                $CertInfo = '<p class="callout callout-{0}">{1}</p>' -f $Callout, ($SslErrors -join "<br />")
+                $CertInfo = '<p class="callout callout-{0}">{1}</p>' -f $Callout, ($SslErrors -join '<br />')
             }
             else {
                 $OrigCertificateString = ($Certificate.fields | Where-Object { $_.label -eq 'Certificate' }).value
@@ -86,7 +86,7 @@ function Invoke-ProcessHuduCertificate {
             }
 
             $HuduAssetFields = @{
-                certifiate_info          = $CertInfo
+                certificate_info          = $CertInfo
                 enable_https_check       = $EnableHttpsCheck
                 common_name              = "$($Subject.CN)"
                 cert_issued              = $CertDetails.NotBefore.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss.fffZ')
@@ -95,6 +95,7 @@ function Invoke-ProcessHuduCertificate {
                 organization             = "$IssuerOrg"
                 country                  = "$Country"
                 subject_alternative_name = [string]($CertDetails.DnsNameList -join ', ')
+                certificate              = $OrigCertificateString
                 serial                   = $CertDetails.SerialNumber
                 signature_algorithm      = "$($CertDetails.SignatureAlgorithm.FriendlyName)"
                 enhanced_key_usage_list  = [string]($CertDetails.EnhancedKeyUsageList -join ', ')

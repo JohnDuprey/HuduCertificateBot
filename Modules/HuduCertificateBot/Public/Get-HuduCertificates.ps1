@@ -105,6 +105,6 @@ function Get-HuduCertificates {
         #Write-Host $Layout
         #Write-Host $TrackedCerts
 
-        Get-HuduAssets -AssetLayoutId $Layout.id | Where-Object { $TrackedCerts.RowKey -notcontains $_.id -or ($TrackedCerts.RowKey -eq $_.id -and $TrackedCerts.Certificate -ne ($_.fields | Where-Object { $_.label -eq 'Certificate' }).value -or [string]::IsNullOrEmpty(($_.fields | Where-Object { $_.label -eq 'Valid To' })).value) }
+        Get-HuduAssets -AssetLayoutId $Layout.id | Where-Object { $TrackedCerts.RowKey -notcontains $_.id -or ($TrackedCerts.RowKey -eq $_.id -and $TrackedCerts.Certificate -ne ($_.fields | Where-Object { $_.label -eq 'Certificate' }).value -or [string]::IsNullOrEmpty(($_.fields | Where-Object { $_.label -eq 'Valid To' })).value) -or (($_.fields | Where-Object { $_.label -eq 'Enable HTTPS Check' }).value -and $_.updated_at -le (Get-Date).AddDays(-1)) }
     }
 }

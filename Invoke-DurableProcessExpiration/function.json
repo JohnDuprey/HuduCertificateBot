@@ -1,0 +1,11 @@
+{
+  "scriptFile": "../lib/ActivityTriggers.psm1",
+  "entryPoint": "Invoke-DurableProcessExpiration",
+  "bindings": [
+    {
+      "name": "Expiration",
+      "type": "activityTrigger",
+      "direction": "in"
+    }
+  ]
+}

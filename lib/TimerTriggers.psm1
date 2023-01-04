@@ -5,4 +5,11 @@ function Start-CertificateTimer {
     Write-Host "Started orchestration with ID = '$InstanceId'"
 }
 
-Export-ModuleMember @('Start-CertificateTimer')
+function Start-PsaTicketTimer {
+    param($Timer)
+
+    $InstanceId = Start-NewOrchestration -FunctionName 'Start-PsaTicketOrchestrator'
+    Write-Host "Started orchestration with ID = '$InstanceId'"
+}
+
+Export-ModuleMember @('Start-CertificateTimer', 'Start-PsaTicketTimer')

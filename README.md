@@ -5,6 +5,23 @@ This is an Azure function app created to improve SSL monitoring for Hudu and add
 ## Features
 - Creates 'SSL Certificate' Asset Layout
 - Monitors assets for changes to the Certificate field and populates other certificate properties
+- PSA Integration: Create tickets for Native/Custom SSL Certificates and Domains
+    - Supported PSAs 
+        - ConnectWise Manage
+
+## PSA Config Properties
+- Generic Properties
+    - HuduPSAIntegration - Set this to the matching integration name in Hudu (e.g. cw_manage), this enables ticketing for expirations
+    - PSATicketAdditionalNotes - Notes to append ticket initial description 
+- ConnectWise Manage
+    - CWM_Server - Server hostname for cw manage
+    - CWM_CompanyID - Company ID (from logon screen)
+    - CWM_PublicKey - API Credential public key
+    - CWM_PrivateKey - API Credential private key
+    - CWM_ClientID - Client ID from CW Developer site
+    - CWM_ServiceBoard - Service board name
+    - CWM_NewStatus - New service ticket status
+    - CWM_ResolvedStatus - Resolved service ticket status
 
 ## Requirements
 - Azure subscription and function app

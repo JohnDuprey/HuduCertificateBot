@@ -6,7 +6,7 @@
       "name": "Timer",
       "type": "timerTrigger",
       "direction": "in",
-      "schedule": "30 16 * * * *"
+      "schedule": "0 45 6 * * *"
     },
     {
       "name": "starter",

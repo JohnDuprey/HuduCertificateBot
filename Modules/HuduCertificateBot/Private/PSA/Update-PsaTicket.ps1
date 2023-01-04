@@ -7,17 +7,22 @@ function Update-PsaTicket {
     )
     switch ($env:HuduPSAIntegration) {
         'cw_manage' {
-            if ($Text) {
-                New-CWMTicketNote -parentId $TicketId -text $Text -detailDescriptionFlag $true
-            }
-            if ($Resolve.IsPresent) {
-                $UpdateParam = @{
-                    ID        = $TicketID
-                    Operation = 'replace'
-                    Path      = 'status'
-                    Value     = ${name = $env:CWM_ResolvedStatus}
+            try {
+                if ($Text) {
+                    New-CWMTicketNote -parentId $TicketId -text $Text -detailDescriptionFlag $true -ErrorAction Stop
                 }
-                Update-CWMTicket @UpdateParam
+                if ($Resolve.IsPresent) {
+                    $UpdateParam = @{
+                        ID        = $TicketID
+                        Operation = 'replace'
+                        Path      = 'status'
+                        Value     = ${name = $env:CWM_ResolvedStatus}
+                    }
+                    Update-CWMTicket @UpdateParam -ErrorAction Stop
+                }
+            }   
+            catch {
+                throw
             }
         }
     }

@@ -11,6 +11,7 @@ This is an Azure function app created to improve SSL monitoring for Hudu and add
 
 ## PSA Config Properties
 - Generic Properties
+    - HuduDomainExclusionlist - Comma separated list of website names to match and skip ticket creation
     - HuduPSAIntegration - Set this to the matching integration name in Hudu (e.g. cw_manage), this enables ticketing for expirations
     - PSATicketAdditionalNotes - Notes to append ticket initial description 
 - ConnectWise Manage

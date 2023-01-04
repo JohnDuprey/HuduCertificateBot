@@ -43,6 +43,74 @@
             "metadata": {
                 "description": "Your SSL Certificate asset layout name."
             }
+        },
+        "HuduDomainExclusionList": {
+            "type": "string",
+            "metadata": {
+                "description": "Comma separated list of domains to exclude"
+            }
+        },
+        "PSATicketAdditionalNotes": {
+            "type": "string",
+            "metadata": {
+                "description": "Notes to append ticket initial description"
+            }
+        },
+        "HuduPSAIntegration": {
+            "type": "string",
+            "metadata": {
+                "description": "Your PSA Integration name (e.g. cw_manage)"
+            }
+        },
+        "CWM_Server": {
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM Server Hostname (e.g. your.cwhostname.com)"
+            }
+        },
+        "CWM_CompanyID": {
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM Company ID"
+            }
+        },
+        "CWM_ClientID": {
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM Client ID"
+            }
+        },
+        "CWM_PublicKey": {
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM Public Key"
+            }
+        },
+        "CWM_PrivateKey": {
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM Private Key"
+            }
+        },
+        "CWM_ServiceBoard": {
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM Service Board"
+            }
+        },
+        "CWM_NewStatus": {
+            "defaultValue": "New",
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM New Status name"
+            }
+        },
+        "CWM_ResolvedStatus": {
+            "defaultValue": "Resolved",
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM Private Key"
+            }
         }
     },
     "variables": {
@@ -101,6 +169,42 @@
                     "properties": {
                         "contentType": "text/plain",
                         "value": "[parameters('HuduBaseDomain')]"
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.KeyVault/vaults', variables('uniqueResourceNameBase'))]"
+                    ]
+                },
+                {
+                    "type": "secrets",
+                    "name": "CWMClientID",
+                    "apiVersion": "2015-06-01",
+                    "properties": {
+                        "contentType": "text/plain",
+                        "value": "[parameters('CWM_ClientID')]"
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.KeyVault/vaults', variables('uniqueResourceNameBase'))]"
+                    ]
+                },
+                {
+                    "type": "secrets",
+                    "name": "CWMPublicKey",
+                    "apiVersion": "2015-06-01",
+                    "properties": {
+                        "contentType": "text/plain",
+                        "value": "[parameters('CWM_PublicKey')]"
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.KeyVault/vaults', variables('uniqueResourceNameBase'))]"
+                    ]
+                },
+                {
+                    "type": "secrets",
+                    "name": "CWMPrivateKey",
+                    "apiVersion": "2015-06-01",
+                    "properties": {
+                        "contentType": "text/plain",
+                        "value": "[parameters('CWM_PrivateKey')]"
                     },
                     "dependsOn": [
                         "[resourceId('Microsoft.KeyVault/vaults', variables('uniqueResourceNameBase'))]"
@@ -165,7 +269,51 @@
                         {
                             "name": "FUNCTIONS_WORKER_RUNTIME",
                             "value": "powershell"
-                        }    
+                        },
+                        {
+                            "name": "HuduPSAIntegration",
+                            "value": "[parameters('HuduPSAIntegration')]"
+                        },
+                        {
+                            "name": "CWM_Server",
+                            "value": "[parameters('CWM_Server')]"
+                        },
+                        {
+                            "name": "CWM_CompanyID",
+                            "value": "[parameters('CWM_CompanyID')]"
+                        },
+                        {
+                            "name": "CWM_ClientID",
+                            "value": "[concat('@Microsoft.KeyVault(SecretUri=https://',variables('uniqueResourceNameBase'), '.vault.azure.net/secrets/CWMClientID)')]"
+                        },
+                        {
+                            "name": "CWM_PublicKey",
+                            "value": "[concat('@Microsoft.KeyVault(SecretUri=https://',variables('uniqueResourceNameBase'), '.vault.azure.net/secrets/CWMPublicKey)')]"
+                        },
+                        {
+                            "name": "CWM_PrivateKey",
+                            "value": "[concat('@Microsoft.KeyVault(SecretUri=https://',variables('uniqueResourceNameBase'), '.vault.azure.net/secrets/CWMPrivateKey)')]"
+                        },
+                        {
+                            "name": "CWM_ServiceBoard",
+                            "value": "[parameters('CWM_ServiceBoard')]"
+                        },
+                        {
+                            "name": "CWM_NewStatus",
+                            "value": "[parameters('CWM_NewStatus')]"
+                        },
+                        {
+                            "name": "CWM_ResolvedStatus",
+                            "value": "[parameters('CWM_ResolvedStatus')]"
+                        },
+                        {
+                            "name": "HuduDomainExclusionList",
+                            "value": "[parameters('HuduDomainExclusionList')]"
+                        },
+                        {
+                            "name": "PSATicketAdditionalNotes",
+                            "value": "[parameters('PSATicketAdditionalNotes')]"
+                        }
                     ]
                 }
             },

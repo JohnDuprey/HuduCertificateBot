@@ -8,10 +8,36 @@ function Get-CertificatesQueue {
     }
 }
 
+function Get-CertExpirationQueue {
+    Param($Name)
+    try {
+        Get-HuduCertExpirations
+    }
+    catch {
+        Write-Host "Error getting certificates: $($_.Exception.Message)"
+    }
+}
+
+function Get-WebsiteExpirationQueue {
+    Param($Name)
+    try {
+        Get-HuduWebsiteExpirations
+    }
+    catch {
+        Write-Host "Error getting website expirations: $($_.Exception.Message)"
+    }
+}
+
 function Invoke-DurableProcessCertificate {
     Param($Certificate)
 
     Invoke-ProcessHuduCertificate -Certificate $Certificate
 }
 
-Export-ModuleMember -Function @('Get-CertificatesQueue', 'Invoke-DurableProcessCertificate')
+function Invoke-DurableProcessExpiration {
+    Param($Expiration)
+
+    Invoke-ProcessHuduExpiration -Expiration $Expiration
+}
+
+Export-ModuleMember -Function @('Get-CertificatesQueue', 'Get-CertExpirationQueue', 'Get-WebsiteExpirationQueue', 'Invoke-DurableProcessCertificate', 'Invoke-DurableProcessExpiration')

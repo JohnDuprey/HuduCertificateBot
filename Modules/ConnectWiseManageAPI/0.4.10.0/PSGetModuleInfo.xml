@@ -1,0 +1,359 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>Microsoft.PowerShell.Commands.PSRepositoryItemInfo</T>
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="Name">ConnectWiseManageAPI</S>
+      <S N="Version">0.4.10.0</S>
+      <S N="Type">Module</S>
+      <S N="Description">PowerShell wrapper for the ConnectWise Manage REST API</S>
+      <S N="Author">Chris Taylor</S>
+      <S N="CompanyName">ChrisTaylorCodes</S>
+      <S N="Copyright">(c) 2020 Chris Taylor. All rights reserved.</S>
+      <DT N="PublishedDate">2022-09-13T01:06:09-04:00</DT>
+      <Nil N="InstalledDate" />
+      <Nil N="UpdatedDate" />
+      <URI N="LicenseUri">https://github.com/christaylorcodes/ConnectWiseManageAPI/blob/master/LICENSE</URI>
+      <URI N="ProjectUri">https://github.com/christaylorcodes/ConnectWiseManageAPI</URI>
+      <URI N="IconUri">https://raw.githubusercontent.com/christaylorcodes/ConnectWiseManageAPI/master/Media/Manage-Icon.png</URI>
+      <Obj N="Tags" RefId="1">
+        <TN RefId="1">
+          <T>System.Object[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST>
+          <S>ChrisTaylorCodes</S>
+          <S>ConnectWise</S>
+          <S>Manage</S>
+          <S>REST</S>
+          <S>API</S>
+          <S>PSModule</S>
+        </LST>
+      </Obj>
+      <Obj N="Includes" RefId="2">
+        <TN RefId="2">
+          <T>System.Collections.Hashtable</T>
+          <T>System.Object</T>
+        </TN>
+        <DCT>
+          <En>
+            <S N="Key">RoleCapability</S>
+            <Obj N="Value" RefId="3">
+              <TNRef RefId="1" />
+              <LST />
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">DscResource</S>
+            <Ref N="Value" RefId="3" />
+          </En>
+          <En>
+            <S N="Key">Cmdlet</S>
+            <Ref N="Value" RefId="3" />
+          </En>
+          <En>
+            <S N="Key">Function</S>
+            <Obj N="Value" RefId="4">
+              <TNRef RefId="1" />
+              <LST>
+                <S>Connect-CWM</S>
+                <S>Disconnect-CWM</S>
+                <S>Get-CWMCommunicationType</S>
+                <S>Get-CWMCompany</S>
+                <S>New-CWMCompany</S>
+                <S>Update-CWMCompany</S>
+                <S>Get-CWMCompanyTypeAssociation</S>
+                <S>New-CWMCompanyTypeAssociation</S>
+                <S>Remove-CWMCompanyTypeAssociation</S>
+                <S>Update-CWMCompanyTypeAssociation</S>
+                <S>Get-CWMCompanyNote</S>
+                <S>Get-CWMCompanyNoteType</S>
+                <S>Get-CWMCompanySite</S>
+                <S>Get-CWMCompanyStatus</S>
+                <S>Remove-CWMCompanyStatus</S>
+                <S>Get-CWMCompanyTeam</S>
+                <S>New-CWMCompanyTeam</S>
+                <S>Get-CWMCompanyType</S>
+                <S>Get-CWMCompanyConfiguration</S>
+                <S>Get-CWMCompanyConfigurationType</S>
+                <S>New-CWMCompanyConfiguration</S>
+                <S>New-CWMCompanyConfigurationTypeQuestionValue</S>
+                <S>Remove-CWMCompanyConfiguration</S>
+                <S>Update-CWMCompanyConfiguration</S>
+                <S>Update-CWMCompanyConfigurationTypeQuestionValue</S>
+                <S>New-CWMContactCommunication</S>
+                <S>Update-CWMContactCommunication</S>
+                <S>Get-CWMCompanyContactNote</S>
+                <S>New-CWMCompanyContactNote</S>
+                <S>Remove-CWMCompanyContactNote</S>
+                <S>Get-CWMCompanyContact</S>
+                <S>New-CWMCompanyContact</S>
+                <S>Remove-CWMCompanyContact</S>
+                <S>Update-CWMCompanyContact</S>
+                <S>Get-CWMCompanyTeamRole</S>
+                <S>Get-CWMAgreementAddition</S>
+                <S>New-CWMAgreementAddition</S>
+                <S>Update-CWMAgreementAddition</S>
+                <S>Get-CWMAgreement</S>
+                <S>New-CWMAgreement</S>
+                <S>Get-CWMAgreementSite</S>
+                <S>Remove-CWMAgreementSite</S>
+                <S>ConvertFrom-CWMTime</S>
+                <S>ConvertTo-CWMTime</S>
+                <S>Get-CWMChargeCode</S>
+                <S>New-CWMDebugReport</S>
+                <S>Get-CWMMarketingGroupCompany</S>
+                <S>New-CWMMarketingGroupCompany</S>
+                <S>Remove-CWMMarketingGroupCompany</S>
+                <S>Get-CWMMarketingGroupContact</S>
+                <S>Get-CWMMarketingGroup</S>
+                <S>Get-CWMProductCatalog</S>
+                <S>New-CWMProductCatalog</S>
+                <S>Update-CWMProductCatalog</S>
+                <S>Get-CWMManufacturer</S>
+                <S>Get-CWMProductComponent</S>
+                <S>Get-CWMProduct</S>
+                <S>Get-CWMProductType</S>
+                <S>Get-CWMProductSubCategory</S>
+                <S>Get-CWMProjectPhase</S>
+                <S>New-CWMProjectPhase</S>
+                <S>Update-CWMProjectPhase</S>
+                <S>Get-CWMProject</S>
+                <S>Get-CWMProjectSecurityRole</S>
+                <S>Get-CWMProjectTeamMember</S>
+                <S>New-CWMProjectTeamMember</S>
+                <S>Get-CWMProjectTicket</S>
+                <S>Update-CWMProjectTicket</S>
+                <S>Get-CWMSalesActivity</S>
+                <S>Get-CWMScheduleHoliday</S>
+                <S>Get-CWMScheduleHolidayList</S>
+                <S>Get-CWMScheduleEntry</S>
+                <S>New-CWMScheduleEntry</S>
+                <S>Remove-CWMScheduleEntry</S>
+                <S>Update-CWMScheduleEntry</S>
+                <S>Get-CWMServiceBoardInfo</S>
+                <S>Get-CWMServiceBoard</S>
+                <S>New-CWMServiceBoard</S>
+                <S>Get-CWMBoardStatus</S>
+                <S>Get-CWMBoardStatusNotification</S>
+                <S>Get-CWMBoardSubtype</S>
+                <S>Get-CWMBoardTeam</S>
+                <S>Get-CWMBoardType</S>
+                <S>Get-CWMBoardTypeSubTypeItemAssociation</S>
+                <S>Get-CWMPriority</S>
+                <S>Get-CWMSource</S>
+                <S>Get-CWMTicketConfiguration</S>
+                <S>New-CWMTicketConfiguration</S>
+                <S>Get-CWMTicketNote</S>
+                <S>New-CWMTicketNote</S>
+                <S>Get-CWMTicket</S>
+                <S>New-CWMTicket</S>
+                <S>Remove-CWMTicket</S>
+                <S>Update-CWMTicket</S>
+                <S>Get-CWMTicketTask</S>
+                <S>New-CWMTicketTask</S>
+                <S>Get-CWMAuditTrail</S>
+                <S>Get-CWMCallbackEntry</S>
+                <S>New-CWMCallbackEntry</S>
+                <S>Remove-CWMCallbackEntry</S>
+                <S>Update-CWMCallbackEntry</S>
+                <S>Get-CWMDepartment</S>
+                <S>Get-CWMDepartmentLocation</S>
+                <S>Get-CWMDocument</S>
+                <S>New-CWMDocument</S>
+                <S>Remove-CWMDocument</S>
+                <S>Get-CWMMember</S>
+                <S>New-CWMMember</S>
+                <S>Update-CWMMember</S>
+                <S>Get-CWMReport</S>
+                <S>Get-CWMReportColumn</S>
+                <S>Get-CWMMyMember</S>
+                <S>Get-CWMMySecurity</S>
+                <S>Get-CWMSystemInfo</S>
+                <S>Get-CWMTimeEntry</S>
+                <S>New-CWMTimeEntry</S>
+                <S>Get-CWMTimeSheet</S>
+                <S>Submit-CWMTimeSheet</S>
+              </LST>
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Command</S>
+            <Obj N="Value" RefId="5">
+              <TNRef RefId="1" />
+              <LST>
+                <S>Connect-CWM</S>
+                <S>Disconnect-CWM</S>
+                <S>Get-CWMCommunicationType</S>
+                <S>Get-CWMCompany</S>
+                <S>New-CWMCompany</S>
+                <S>Update-CWMCompany</S>
+                <S>Get-CWMCompanyTypeAssociation</S>
+                <S>New-CWMCompanyTypeAssociation</S>
+                <S>Remove-CWMCompanyTypeAssociation</S>
+                <S>Update-CWMCompanyTypeAssociation</S>
+                <S>Get-CWMCompanyNote</S>
+                <S>Get-CWMCompanyNoteType</S>
+                <S>Get-CWMCompanySite</S>
+                <S>Get-CWMCompanyStatus</S>
+                <S>Remove-CWMCompanyStatus</S>
+                <S>Get-CWMCompanyTeam</S>
+                <S>New-CWMCompanyTeam</S>
+                <S>Get-CWMCompanyType</S>
+                <S>Get-CWMCompanyConfiguration</S>
+                <S>Get-CWMCompanyConfigurationType</S>
+                <S>New-CWMCompanyConfiguration</S>
+                <S>New-CWMCompanyConfigurationTypeQuestionValue</S>
+                <S>Remove-CWMCompanyConfiguration</S>
+                <S>Update-CWMCompanyConfiguration</S>
+                <S>Update-CWMCompanyConfigurationTypeQuestionValue</S>
+                <S>New-CWMContactCommunication</S>
+                <S>Update-CWMContactCommunication</S>
+                <S>Get-CWMCompanyContactNote</S>
+                <S>New-CWMCompanyContactNote</S>
+                <S>Remove-CWMCompanyContactNote</S>
+                <S>Get-CWMCompanyContact</S>
+                <S>New-CWMCompanyContact</S>
+                <S>Remove-CWMCompanyContact</S>
+                <S>Update-CWMCompanyContact</S>
+                <S>Get-CWMCompanyTeamRole</S>
+                <S>Get-CWMAgreementAddition</S>
+                <S>New-CWMAgreementAddition</S>
+                <S>Update-CWMAgreementAddition</S>
+                <S>Get-CWMAgreement</S>
+                <S>New-CWMAgreement</S>
+                <S>Get-CWMAgreementSite</S>
+                <S>Remove-CWMAgreementSite</S>
+                <S>ConvertFrom-CWMTime</S>
+                <S>ConvertTo-CWMTime</S>
+                <S>Get-CWMChargeCode</S>
+                <S>New-CWMDebugReport</S>
+                <S>Get-CWMMarketingGroupCompany</S>
+                <S>New-CWMMarketingGroupCompany</S>
+                <S>Remove-CWMMarketingGroupCompany</S>
+                <S>Get-CWMMarketingGroupContact</S>
+                <S>Get-CWMMarketingGroup</S>
+                <S>Get-CWMProductCatalog</S>
+                <S>New-CWMProductCatalog</S>
+                <S>Update-CWMProductCatalog</S>
+                <S>Get-CWMManufacturer</S>
+                <S>Get-CWMProductComponent</S>
+                <S>Get-CWMProduct</S>
+                <S>Get-CWMProductType</S>
+                <S>Get-CWMProductSubCategory</S>
+                <S>Get-CWMProjectPhase</S>
+                <S>New-CWMProjectPhase</S>
+                <S>Update-CWMProjectPhase</S>
+                <S>Get-CWMProject</S>
+                <S>Get-CWMProjectSecurityRole</S>
+                <S>Get-CWMProjectTeamMember</S>
+                <S>New-CWMProjectTeamMember</S>
+                <S>Get-CWMProjectTicket</S>
+                <S>Update-CWMProjectTicket</S>
+                <S>Get-CWMSalesActivity</S>
+                <S>Get-CWMScheduleHoliday</S>
+                <S>Get-CWMScheduleHolidayList</S>
+                <S>Get-CWMScheduleEntry</S>
+                <S>New-CWMScheduleEntry</S>
+                <S>Remove-CWMScheduleEntry</S>
+                <S>Update-CWMScheduleEntry</S>
+                <S>Get-CWMServiceBoardInfo</S>
+                <S>Get-CWMServiceBoard</S>
+                <S>New-CWMServiceBoard</S>
+                <S>Get-CWMBoardStatus</S>
+                <S>Get-CWMBoardStatusNotification</S>
+                <S>Get-CWMBoardSubtype</S>
+                <S>Get-CWMBoardTeam</S>
+                <S>Get-CWMBoardType</S>
+                <S>Get-CWMBoardTypeSubTypeItemAssociation</S>
+                <S>Get-CWMPriority</S>
+                <S>Get-CWMSource</S>
+                <S>Get-CWMTicketConfiguration</S>
+                <S>New-CWMTicketConfiguration</S>
+                <S>Get-CWMTicketNote</S>
+                <S>New-CWMTicketNote</S>
+                <S>Get-CWMTicket</S>
+                <S>New-CWMTicket</S>
+                <S>Remove-CWMTicket</S>
+                <S>Update-CWMTicket</S>
+                <S>Get-CWMTicketTask</S>
+                <S>New-CWMTicketTask</S>
+                <S>Get-CWMAuditTrail</S>
+                <S>Get-CWMCallbackEntry</S>
+                <S>New-CWMCallbackEntry</S>
+                <S>Remove-CWMCallbackEntry</S>
+                <S>Update-CWMCallbackEntry</S>
+                <S>Get-CWMDepartment</S>
+                <S>Get-CWMDepartmentLocation</S>
+                <S>Get-CWMDocument</S>
+                <S>New-CWMDocument</S>
+                <S>Remove-CWMDocument</S>
+                <S>Get-CWMMember</S>
+                <S>New-CWMMember</S>
+                <S>Update-CWMMember</S>
+                <S>Get-CWMReport</S>
+                <S>Get-CWMReportColumn</S>
+                <S>Get-CWMMyMember</S>
+                <S>Get-CWMMySecurity</S>
+                <S>Get-CWMSystemInfo</S>
+                <S>Get-CWMTimeEntry</S>
+                <S>New-CWMTimeEntry</S>
+                <S>Get-CWMTimeSheet</S>
+                <S>Submit-CWMTimeSheet</S>
+              </LST>
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Workflow</S>
+            <Ref N="Value" RefId="3" />
+          </En>
+        </DCT>
+      </Obj>
+      <Nil N="PowerShellGetFormatVersion" />
+      <S N="ReleaseNotes">https://github.com/christaylorcodes/ConnectWiseManageAPI/releases</S>
+      <Obj N="Dependencies" RefId="6">
+        <TNRef RefId="1" />
+        <LST />
+      </Obj>
+      <S N="RepositorySourceLocation">https://www.powershellgallery.com/api/v2</S>
+      <S N="Repository">PSGallery</S>
+      <S N="PackageManagementProvider">NuGet</S>
+      <Obj N="AdditionalMetadata" RefId="7">
+        <TN RefId="3">
+          <T>System.Management.Automation.PSCustomObject</T>
+          <T>System.Object</T>
+        </TN>
+        <MS>
+          <S N="copyright">(c) 2020 Chris Taylor. All rights reserved.</S>
+          <S N="description">PowerShell wrapper for the ConnectWise Manage REST API</S>
+          <S N="requireLicenseAcceptance">False</S>
+          <S N="releaseNotes">https://github.com/christaylorcodes/ConnectWiseManageAPI/releases</S>
+          <S N="isLatestVersion">True</S>
+          <S N="isAbsoluteLatestVersion">True</S>
+          <S N="versionDownloadCount">4369</S>
+          <S N="downloadCount">60152</S>
+          <S N="packageSize">168918</S>
+          <S N="published">9/13/2022 1:06:09 AM -04:00</S>
+          <S N="created">9/13/2022 1:06:09 AM -04:00</S>
+          <S N="lastUpdated">1/3/2023 6:04:00 PM -05:00</S>
+          <S N="tags">ChrisTaylorCodes ConnectWise Manage REST API PSModule PSFunction_Connect-CWM PSCommand_Connect-CWM PSFunction_Disconnect-CWM PSCommand_Disconnect-CWM PSFunction_Get-CWMCommunicationType PSCommand_Get-CWMCommunicationType PSFunction_Get-CWMCompany PSCommand_Get-CWMCompany PSFunction_New-CWMCompany PSCommand_New-CWMCompany PSFunction_Update-CWMCompany PSCommand_Update-CWMCompany PSFunction_Get-CWMCompanyTypeAssociation PSCommand_Get-CWMCompanyTypeAssociation PSFunction_New-CWMCompanyTypeAssociation PSCommand_New-CWMCompanyTypeAssociation PSFunction_Remove-CWMCompanyTypeAssociation PSCommand_Remove-CWMCompanyTypeAssociation PSFunction_Update-CWMCompanyTypeAssociation PSCommand_Update-CWMCompanyTypeAssociation PSFunction_Get-CWMCompanyNote PSCommand_Get-CWMCompanyNote PSFunction_Get-CWMCompanyNoteType PSCommand_Get-CWMCompanyNoteType PSFunction_Get-CWMCompanySite PSCommand_Get-CWMCompanySite PSFunction_Get-CWMCompanyStatus PSCommand_Get-CWMCompanyStatus PSFunction_Remove-CWMCompanyStatus PSCommand_Remove-CWMCompanyStatus PSFunction_Get-CWMCompanyTeam PSCommand_Get-CWMCompanyTeam PSFunction_New-CWMCompanyTeam PSCommand_New-CWMCompanyTeam PSFunction_Get-CWMCompanyType PSCommand_Get-CWMCompanyType PSFunction_Get-CWMCompanyConfiguration PSCommand_Get-CWMCompanyConfiguration PSFunction_Get-CWMCompanyConfigurationType PSCommand_Get-CWMCompanyConfigurationType PSFunction_New-CWMCompanyConfiguration PSCommand_New-CWMCompanyConfiguration PSFunction_New-CWMCompanyConfigurationTypeQuestionValue PSCommand_New-CWMCompanyConfigurationTypeQuestionValue PSFunction_Remove-CWMCompanyConfiguration PSCommand_Remove-CWMCompanyConfiguration PSFunction_Update-CWMCompanyConfiguration PSCommand_Update-CWMCompanyConfiguration PSFunction_Update-CWMCompanyConfigurationTypeQuestionValue PSCommand_Update-CWMCompanyConfigurationTypeQuestionValue PSFunction_New-CWMContactCommunication PSCommand_New-CWMContactCommunication PSFunction_Update-CWMContactCommunication PSCommand_Update-CWMContactCommunication PSFunction_Get-CWMCompanyContactNote PSCommand_Get-CWMCompanyContactNote PSFunction_New-CWMCompanyContactNote PSCommand_New-CWMCompanyContactNote PSFunction_Remove-CWMCompanyContactNote PSCommand_Remove-CWMCompanyContactNote PSFunction_Get-CWMCompanyContact PSCommand_Get-CWMCompanyContact PSFunction_New-CWMCompanyContact PSCommand_New-CWMCompanyContact PSFunction_Remove-CWMCompanyContact PSCommand_Remove-CWMCompanyContact PSFunction_Update-CWMCompanyContact PSCommand_Update-CWMCompanyContact PSFunction_Get-CWMCompanyTeamRole PSCommand_Get-CWMCompanyTeamRole PSFunction_Get-CWMAgreementAddition PSCommand_Get-CWMAgreementAddition PSFunction_New-CWMAgreementAddition PSCommand_New-CWMAgreementAddition PSFunction_Update-CWMAgreementAddition PSCommand_Update-CWMAgreementAddition PSFunction_Get-CWMAgreement PSCommand_Get-CWMAgreement PSFunction_New-CWMAgreement PSCommand_New-CWMAgreement PSFunction_Get-CWMAgreementSite PSCommand_Get-CWMAgreementSite PSFunction_Remove-CWMAgreementSite PSCommand_Remove-CWMAgreementSite PSFunction_ConvertFrom-CWMTime PSCommand_ConvertFrom-CWMTime PSFunction_ConvertTo-CWMTime PSCommand_ConvertTo-CWMTime PSFunction_Get-CWMChargeCode PSCommand_Get-CWMChargeCode PSFunction_New-CWMDebugReport PSCommand_New-CWMDebugReport PSFunction_Get-CWMMarketingGroupCompany PSCommand_Get-CWMMarketingGroupCompany PSFunction_New-CWMMarketingGroupCompany PSCommand_New-CWMMarketingGroupCompany PSFunction_Remove-CWMMarketingGroupCompany PSCommand_Remove-CWMMarketingGroupCompany PSFunction_Get-CWMMarketingGroupContact PSCommand_Get-CWMMarketingGroupContact PSFunction_Get-CWMMarketingGroup PSCommand_Get-CWMMarketingGroup PSFunction_Get-CWMProductCatalog PSCommand_Get-CWMProductCatalog PSFunction_New-CWMProductCatalog PSCommand_New-CWMProductCatalog PSFunction_Update-CWMProductCatalog PSCommand_Update-CWMProductCatalog PSFunction_Get-CWMManufacturer PSCommand_Get-CWMManufacturer PSFunction_Get-CWMProductComponent PSCommand_Get-CWMProductComponent PSFunction_Get-CWMProduct PSCommand_Get-CWMProduct PSFunction_Get-CWMProductType PSCommand_Get-CWMProductType PSFunction_Get-CWMProductSubCategory PSCommand_Get-CWMProductSubCategory PSFunction_Get-CWMProjectPhase PSCommand_Get-CWMProjectPhase PSFunction_New-CWMProjectPhase PSCommand_New-CWMProjectPhase PSFunction_Update-CWMProjectPhase PSCommand_Update-CWMProjectPhase PSFunction_Get-CWMProject PSCommand_Get-CWMProject PSFunction_Get-CWMProjectSecurityRole PSCommand_Get-CWMProjectSecurityRole PSFunction_Get-CWMProjectTeamMember PSCommand_Get-CWMProjectTeamMember PSFunction_New-CWMProjectTeamMember PSCommand_New-CWMProjectTeamMember PSFunction_Get-CWMProjectTicket PSCommand_Get-CWMProjectTicket PSFunction_Update-CWMProjectTicket PSCommand_Update-CWMProjectTicket PSFunction_Get-CWMSalesActivity PSCommand_Get-CWMSalesActivity PSFunction_Get-CWMScheduleHoliday PSCommand_Get-CWMScheduleHoliday PSFunction_Get-CWMScheduleHolidayList PSCommand_Get-CWMScheduleHolidayList PSFunction_Get-CWMScheduleEntry PSCommand_Get-CWMScheduleEntry PSFunction_New-CWMScheduleEntry PSCommand_New-CWMScheduleEntry PSFunction_Remove-CWMScheduleEntry PSCommand_Remove-CWMScheduleEntry PSFunction_Update-CWMScheduleEntry PSCommand_Update-CWMScheduleEntry PSFunction_Get-CWMServiceBoardInfo PSCommand_Get-CWMServiceBoardInfo PSFunction_Get-CWMServiceBoard PSCommand_Get-CWMServiceBoard PSFunction_New-CWMServiceBoard PSCommand_New-CWMServiceBoard PSFunction_Get-CWMBoardStatus PSCommand_Get-CWMBoardStatus PSFunction_Get-CWMBoardStatusNotification PSCommand_Get-CWMBoardStatusNotification PSFunction_Get-CWMBoardSubtype PSCommand_Get-CWMBoardSubtype PSFunction_Get-CWMBoardTeam PSCommand_Get-CWMBoardTeam PSFunction_Get-CWMBoardType PSCommand_Get-CWMBoardType PSFunction_Get-CWMBoardTypeSubTypeItemAssociation PSCommand_Get-CWMBoardTypeSubTypeItemAssociation PSFunction_Get-CWMPriority PSCommand_Get-CWMPriority PSFunction_Get-CWMSource PSCommand_Get-CWMSource PSFunction_Get-CWMTicketConfiguration PSCommand_Get-CWMTicketConfiguration PSFunction_New-CWMTicketConfiguration PSCommand_New-CWMTicketConfiguration PSFunction_Get-CWMTicketNote PSCommand_Get-CWMTicketNote PSFunction_New-CWMTicketNote PSCommand_New-CWMTicketNote PSFunction_Get-CWMTicket PSCommand_Get-CWMTicket PSFunction_New-CWMTicket PSCommand_New-CWMTicket PSFunction_Remove-CWMTicket PSCommand_Remove-CWMTicket PSFunction_Update-CWMTicket PSCommand_Update-CWMTicket PSFunction_Get-CWMTicketTask PSCommand_Get-CWMTicketTask PSFunction_New-CWMTicketTask PSCommand_New-CWMTicketTask PSFunction_Get-CWMAuditTrail PSCommand_Get-CWMAuditTrail PSFunction_Get-CWMCallbackEntry PSCommand_Get-CWMCallbackEntry PSFunction_New-CWMCallbackEntry PSCommand_New-CWMCallbackEntry PSFunction_Remove-CWMCallbackEntry PSCommand_Remove-CWMCallbackEntry PSFunction_Update-CWMCallbackEntry PSCommand_Update-CWMCallbackEntry PSFunction_Get-CWMDepartment PSCommand_Get-CWMDepartment PSFunction_Get-CWMDepartmentLocation PSCommand_Get-CWMDepartmentLocation PSFunction_Get-CWMDocument PSCommand_Get-CWMDocument PSFunction_New-CWMDocument PSCommand_New-CWMDocument PSFunction_Remove-CWMDocument PSCommand_Remove-CWMDocument PSFunction_Get-CWMMember PSCommand_Get-CWMMember PSFunction_New-CWMMember PSCommand_New-CWMMember PSFunction_Update-CWMMember PSCommand_Update-CWMMember PSFunction_Get-CWMReport PSCommand_Get-CWMReport PSFunction_Get-CWMReportColumn PSCommand_Get-CWMReportColumn PSFunction_Get-CWMMyMember PSCommand_Get-CWMMyMember PSFunction_Get-CWMMySecurity PSCommand_Get-CWMMySecurity PSFunction_Get-CWMSystemInfo PSCommand_Get-CWMSystemInfo PSFunction_Get-CWMTimeEntry PSCommand_Get-CWMTimeEntry PSFunction_New-CWMTimeEntry PSCommand_New-CWMTimeEntry PSFunction_Get-CWMTimeSheet PSCommand_Get-CWMTimeSheet PSFunction_Submit-CWMTimeSheet PSCommand_Submit-CWMTimeSheet PSIncludes_Function</S>
+          <S N="developmentDependency">False</S>
+          <S N="updated">2023-01-03T18:04:00Z</S>
+          <S N="NormalizedVersion">0.4.10</S>
+          <S N="Authors">Chris Taylor</S>
+          <S N="IsPrerelease">false</S>
+          <S N="ItemType">Module</S>
+          <S N="FileList">ConnectWiseManageAPI.nuspec|Public\Company\CommunicationTypes\Get-CWMCommunicationType.ps1|Public\Company\Configurations\Get-CWMCompanyConfigurationType.ps1|Public\Finance\AgreementAdditions\New-CWMAgreementAddition.ps1|Public\Procurement\CatalogsItem\Update-CWMProductCatalog.ps1|Public\Schedule\HolidayLists\Get-CWMScheduleHoliday.ps1|Public\Service\TicketConfigurations\Get-CWMTicketConfiguration.ps1|Public\System\CallbackEntries\Update-CWMCallbackEntry.ps1|ConnectWiseManageAPI.Format.ps1xml|Public\Company\Companies\Get-CWMCompany.ps1|Public\Company\Configurations\New-CWMCompanyConfiguration.ps1|Public\Finance\AgreementAdditions\Update-CWMAgreementAddition.ps1|Public\Procurement\Manufacturers\Get-CWMManufacturer.ps1|Public\Schedule\HolidayLists\Get-CWMScheduleHolidayList.ps1|Public\Service\TicketConfigurations\New-CWMTicketConfiguration.ps1|Public\System\Department\Get-CWMDepartment.ps1|Public\Company\Companies\New-CWMCompany.ps1|Public\Company\Configurations\New-CWMCompanyConfigurationTypeQuestionValue.ps1|Public\Finance\Agreements\Get-CWMAgreement.ps1|Public\Procurement\ProductComponents\Get-CWMProductComponent.ps1|Public\Schedule\ScheduleEntries\Get-CWMScheduleEntry.ps1|Public\Service\TicketNotes\Get-CWMTicketNote.ps1|Public\System\Department\Get-CWMDepartmentLocation.ps1|ConnectWiseManageAPI.psd1|Public\Company\Companies\Update-CWMCompany.ps1|Public\Company\Configurations\Remove-CWMCompanyConfiguration.ps1|Public\Finance\Agreements\New-CWMAgreement.ps1|Public\Procurement\ProductsItem\Get-CWMProduct.ps1|Public\Schedule\ScheduleEntries\New-CWMScheduleEntry.ps1|Public\Service\TicketNotes\New-CWMTicketNote.ps1|Public\System\Documents\Get-CWMDocument.ps1|ConnectWiseManageAPI.psm1|Public\Company\CompanyCompanyTypeAssociations\Get-CWMCompanyTypeAssociation.ps1|Public\Company\Configurations\Update-CWMCompanyConfiguration.ps1|Public\Finance\AgreementSites\Get-CWMAgreementSite.ps1|Public\Procurement\ProductTypes\Get-CWMProductType.ps1|Public\Schedule\ScheduleEntries\Remove-CWMScheduleEntry.ps1|Public\Service\Tickets\Get-CWMTicket.ps1|Public\System\Documents\New-CWMDocument.ps1|en-US\ConnectWiseManageAPI-help.xml|Public\Company\CompanyCompanyTypeAssociations\New-CWMCompanyTypeAssociation.ps1|Public\Company\Configurations\Update-CWMCompanyConfigurationTypeQuestionValue.ps1|Public\Finance\AgreementSites\Remove-CWMAgreementSite.ps1|Public\Procurement\SubCategories\Get-CWMProductSubCategory.ps1|Public\Schedule\ScheduleEntries\Update-CWMScheduleEntry.ps1|Public\Service\Tickets\New-CWMTicket.ps1|Public\System\Documents\Remove-CWMDocument.ps1|Private\ConvertFrom\ConvertFrom-CWMColumnRow.ps1|Public\Company\CompanyCompanyTypeAssociations\Remove-CWMCompanyTypeAssociation.ps1|Public\Company\ContactCommunications\New-CWMContactCommunication.ps1|Public\Helper\ConvertFrom-CWMTime.ps1|Public\Project\ProjectPhases\Get-CWMProjectPhase.ps1|Public\Service\BoardInfo\Get-CWMServiceBoardInfo.ps1|Public\Service\Tickets\Remove-CWMTicket.ps1|Public\System\MemberInfos\Get-CWMMember.ps1|Private\Helper\Join-Url.ps1|Public\Company\CompanyCompanyTypeAssociations\Update-CWMCompanyTypeAssociation.ps1|Public\Company\ContactCommunications\Update-CWMContactCommunication.ps1|Public\Helper\ConvertTo-CWMTime.ps1|Public\Project\ProjectPhases\New-CWMProjectPhase.ps1|Public\Service\Boards\Get-CWMServiceBoard.ps1|Public\Service\Tickets\Update-CWMTicket.ps1|Public\System\MemberInfos\New-CWMMember.ps1|Private\Helper\New-CWMUrl.ps1|Public\Company\CompanyNotes\Get-CWMCompanyNote.ps1|Public\Company\ContactNotes\Get-CWMCompanyContactNote.ps1|Public\Helper\Get-CWMChargeCode.ps1|Public\Project\ProjectPhases\Update-CWMProjectPhase.ps1|Public\Service\Boards\New-CWMServiceBoard.ps1|Public\Service\TicketTasks\Get-CWMTicketTask.ps1|Public\System\MemberInfos\Update-CWMMember.ps1|Private\Helper\Test-ParameterVersioning.ps1|Public\Company\CompanyNoteTypes\Get-CWMCompanyNoteType.ps1|Public\Company\ContactNotes\New-CWMCompanyContactNote.ps1|Public\Helper\New-CWMDebugReport.ps1|Public\Project\Projects\Get-CWMProject.ps1|Public\Service\BoardStatuses\Get-CWMBoardStatus.ps1|Public\Service\TicketTasks\New-CWMTicketTask.ps1|Public\System\Reports\Get-CWMReport.ps1|Private\Invoke\Invoke-CWMAllResult.ps1|Public\Company\CompanySites\Get-CWMCompanySite.ps1|Public\Company\ContactNotes\Remove-CWMCompanyContactNote.ps1|Public\Marketing\Companies\Get-CWMMarketingGroupCompany.ps1|Public\Project\Projects\Update-CWMProject.ps1|Public\Service\BoardStatusNotifications\Get-CWMBoardStatusNotification.ps1|Public\System\Get-CWMMyMember.ps1|Public\System\Reports\Get-CWMReportColumn.ps1|Private\Invoke\Invoke-CWMGetMaster.ps1|Public\Company\CompanyStatuses\Get-CWMCompanyStatus.ps1|Public\Company\Contacts\Get-CWMCompanyContact.ps1|Public\Marketing\Companies\New-CWMMarketingGroupCompany.ps1|Public\Project\ProjectSecurityRoles\Get-CWMProjectSecurityRole.ps1|Public\Service\BoardSubtypes\Get-CWMBoardSubtype.ps1|Public\System\Get-CWMMySecurity.ps1|Public\Time\TimeEntries\Get-CWMTimeEntry.ps1|Private\Invoke\Invoke-CWMNewMaster.ps1|Public\Company\CompanyStatuses\Remove-CWMCompanyStatus.ps1|Public\Company\Contacts\New-CWMCompanyContact.ps1|Public\Marketing\Companies\Remove-CWMMarketingGroupCompany.ps1|Public\Project\ProjectsTeamMembers\Get-CWMProjectTeamMember.ps1|Public\Service\BoardTeams\Get-CWMBoardTeam.ps1|Public\System\Get-CWMSystemInfo.ps1|Public\Time\TimeEntries\New-CWMTimeEntry.ps1|Private\Invoke\Invoke-CWMRemoveMaster.ps1|Public\Company\CompanyTeams\Get-CWMCompanyTeam.ps1|Public\Company\Contacts\Remove-CWMCompanyContact.ps1|Public\Marketing\Contacts\Get-CWMMarketingGroupContact.ps1|Public\Project\ProjectsTeamMembers\New-CWMProjectTeamMember.ps1|Public\Service\BoardTypes\Get-CWMBoardType.ps1|Public\System\AuditTrail\Get-CWMAuditTrail.ps1|Public\Time\TimeEntries\Update-CWMTimeEntry.ps1|Private\Invoke\Invoke-CWMSearchMaster.ps1|Public\Company\CompanyTeams\New-CWMCompanyTeam.ps1|Public\Company\Contacts\Update-CWMCompanyContact.ps1|Public\Marketing\Groups\Get-CWMMarketingGroup.ps1|Public\Project\ProjectTickets\Get-CWMProjectTicket.ps1|Public\Service\BoardTypeSubTypeItemAssociation\Get-CWMBoardTypeSubTypeItemAssociation.ps1|Public\System\CallbackEntries\Get-CWMCallbackEntry.ps1|Public\Time\TimeSheets\Get-CWMTimeSheet.ps1|Private\Invoke\Invoke-CWMUpdateMaster.ps1|Public\Company\CompanyTypes\Get-CWMCompanyType.ps1|Public\Company\TeamRoles\Get-CWMCompanyTeamRole.ps1|Public\Procurement\CatalogsItem\Get-CWMProductCatalog.ps1|Public\Project\ProjectTickets\Update-CWMProjectTicket.ps1|Public\Service\Priorities\Get-CWMPriority.ps1|Public\System\CallbackEntries\New-CWMCallbackEntry.ps1|Public\Time\TimeSheets\Submit-CWMTimeSheet.ps1|Private\Invoke\Invoke-CWMWebRequest.ps1|Public\Company\Configurations\Get-CWMCompanyConfiguration.ps1|Public\Finance\AgreementAdditions\Get-CWMAgreementAddition.ps1|Public\Procurement\CatalogsItem\New-CWMProductCatalog.ps1|Public\Sales\Activities\Get-CWMSalesActivity.ps1|Public\Service\Sources\Get-CWMSource.ps1|Public\System\CallbackEntries\Remove-CWMCallbackEntry.ps1|Public\Time\TimeSheets\Update-CWMTimeSheet.ps1|Public\Authentication\Connect-CWM.ps1|Public\Authentication\Disconnect-CWM.ps1</S>
+          <S N="GUID">3374fb93-c06d-47b0-b4cc-9d49987e376f</S>
+          <S N="PowerShellVersion">3.0</S>
+          <S N="CompanyName">ChrisTaylorCodes</S>
+        </MS>
+      </Obj>
+      <S N="InstalledLocation">C:\Users\jduprey.CNS\Documents\GitHub\HuduCertificateBot\Modules\ConnectWiseManageAPI\0.4.10.0</S>
+    </MS>
+  </Obj>
+</Objs>

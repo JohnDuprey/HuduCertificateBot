@@ -1,0 +1,11 @@
+{
+  "scriptFile": "../lib/ActivityTriggers.psm1",
+  "entryPoint": "Get-PsaTicketQueue",
+  "bindings": [
+    {
+      "name": "Name",
+      "type": "activityTrigger",
+      "direction": "in"
+    }
+  ]
+}

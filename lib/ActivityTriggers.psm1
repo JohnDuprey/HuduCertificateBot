@@ -28,6 +28,16 @@ function Get-WebsiteExpirationQueue {
     }
 }
 
+function Get-PsaTicketQueue {
+    Param($Name)
+    try {
+        Get-PsaTrackedTickets
+    }
+    catch {
+        Write-Host "Error getting psa tickets: $($_.Exception.Message)"
+    }
+}
+
 function Invoke-DurableProcessCertificate {
     Param($Certificate)
 
@@ -40,4 +50,4 @@ function Invoke-DurableProcessExpiration {
     Invoke-ProcessHuduExpiration -Expiration $Expiration
 }
 
-Export-ModuleMember -Function @('Get-CertificatesQueue', 'Get-CertExpirationQueue', 'Get-WebsiteExpirationQueue', 'Invoke-DurableProcessCertificate', 'Invoke-DurableProcessExpiration')
+Export-ModuleMember -Function @('Get-CertificatesQueue', 'Get-CertExpirationQueue', 'Get-PsaTicketQueue', 'Get-WebsiteExpirationQueue', 'Invoke-DurableProcessCertificate', 'Invoke-DurableProcessExpiration')

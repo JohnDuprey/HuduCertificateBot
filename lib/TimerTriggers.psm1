@@ -1,8 +1,13 @@
 function Start-CertificateTimer {
     param($Timer)
 
-    $InstanceId = Start-NewOrchestration -FunctionName 'Start-CertificateOrchestrator'
-    Write-Host "Started orchestration with ID = '$InstanceId'"
+    if (!$env:DEV_NO_CERT_TIMER) {
+        $InstanceId = Start-NewOrchestration -FunctionName 'Start-CertificateOrchestrator'
+        Write-Host "Started orchestration with ID = '$InstanceId'"
+    }
+    else {
+        Write-Host "Skipping cert timer"
+    }
 }
 
 function Start-PsaTicketTimer {

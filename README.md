@@ -23,6 +23,8 @@ This is an Azure function app created to improve SSL monitoring for Hudu and add
     - CWM_ServiceBoard - Service board name
     - CWM_NewStatus - New service ticket status
     - CWM_ResolvedStatus - Resolved service ticket status
+    - CWM_ServiceType - (Optional) Type to apply to service ticket
+    - CWM_ServiceSubType - (Optional) Sub-type to apply to service ticket
 
 ## Requirements
 - Azure subscription and function app

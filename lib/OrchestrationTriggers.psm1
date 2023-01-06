@@ -65,7 +65,22 @@ function Start-PsaTicketOrchestrator {
 
             if ($CertTasks) {
                 Wait-ActivityFunction -Task $CertTasks
-            }  
+            } 
+
+
+            ## Get PSA tickets
+            $Tickets = Invoke-ActivityFunction -FunctionName 'Get-PsaTicketQueue'
+            if (($Tickets | Measure-Object).Count -gt 0) {
+                $TicketTasks = foreach ($Ticket in $Tickets) {
+                    if (![string]::IsNullOrEmpty($Certificate)) {
+                        Invoke-DurableActivity -FunctionName 'Invoke-DurableProcessExpiration' -Input ($Ticket | ConvertTo-Json -Depth 10) -NoWait -RetryOptions $RetryOptions
+                    }
+                }  
+            }
+
+            if ($TicketTasks) {
+                Wait-ActivityFunction -Task $CertTasks
+            }   
         }
         else {
             Write-Host "PSA integration is not enabled"

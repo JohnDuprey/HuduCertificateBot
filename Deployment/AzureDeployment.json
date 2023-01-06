@@ -109,7 +109,19 @@
             "defaultValue": "Resolved",
             "type": "string",
             "metadata": {
-                "description": "Your CWM Private Key"
+                "description": "Your CWM Resolved status name"
+            }
+        },
+        "CWM_ServiceType": {
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM Service Ticket Type"
+            }
+        },
+        "CWM_ServiceSubType": {
+            "type": "string",
+            "metadata": {
+                "description": "Your CWM Service Ticket SubType"
             }
         }
     },
@@ -305,6 +317,14 @@
                         {
                             "name": "CWM_ResolvedStatus",
                             "value": "[parameters('CWM_ResolvedStatus')]"
+                        },
+                        {
+                            "name": "CWM_ServiceType",
+                            "value": "[parameters('CWM_ServiceType')]"
+                        },
+                        {
+                            "name": "CWM_ServiceSubType",
+                            "value": "[parameters('CWM_ServiceSubType')]"
                         },
                         {
                             "name": "HuduDomainExclusionList",

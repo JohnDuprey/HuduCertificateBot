@@ -28,16 +28,17 @@ function Invoke-ProcessHuduExpiration {
                         $Date = Get-Date $_.date
                     }
                 }
+                Write-Output $Date
 
                 if ($Date -gt (Get-Date).AddDays(30)) {
                     $Resolution = 'The expiration date has been updated to {0}' -f $Date.ToString()
                     try {
-                        Update-PsaTicket -Id $TicketID -Resolve -Text $Resolution
+                        Update-PsaTicket -TicketId $TicketID -Resolve -Text $Resolution
                         Remove-TableData -TableName PsaTicket -Entity $Entity
                         #Write-Output "Resolved Ticket #$TicketID"
                     }
                     catch { 
-                        #Write-Output "Error resolving/cleaning up tracked ticket: $($_.Exception.Message)"
+                        Write-Output "Error resolving/cleaning up tracked ticket: $($_.Exception.Message)"
                     }
                 }
 
@@ -48,7 +49,7 @@ function Invoke-ProcessHuduExpiration {
                     #Write-Output "Cleaned up Ticket #$TicketID"
                 }
                 catch {
-                    #Write-Output "Error cleaning up tracked ticket: $($_.Exception.Message)"
+                    Write-Output "Error cleaning up tracked ticket: $($_.Exception.Message)"
                 }
             }
         }

@@ -39,51 +39,54 @@ function Start-PsaTicketOrchestrator {
             }
             $RetryOptions = New-DurableRetryOptions @DurableRetryOptions
 
-            ## Native Domain and SSL expirations
-            $Websites = Invoke-ActivityFunction -FunctionName 'Get-WebsiteExpirationQueue'
-            if (($Websites | Measure-Object).Count -gt 0) {
-                $WebsiteTasks = foreach ($Website in $Websites) {
-                    if (![string]::IsNullOrEmpty($Website)) {
-                        Invoke-DurableActivity -FunctionName 'Invoke-DurableProcessExpiration' -Input ($Website | ConvertTo-Json -Depth 10) -NoWait -RetryOptions $RetryOptions
+            if (!$env:DEV_NO_CREATE_TICKETS) {
+                ## Native Domain and SSL expirations
+                $Websites = Invoke-ActivityFunction -FunctionName 'Get-WebsiteExpirationQueue'
+                if (($Websites | Measure-Object).Count -gt 0) {
+                    $WebsiteTasks = foreach ($Website in $Websites) {
+                        if (![string]::IsNullOrEmpty($Website)) {
+                            Invoke-DurableActivity -FunctionName 'Invoke-DurableProcessExpiration' -Input ($Website | ConvertTo-Json -Depth 10) -NoWait -RetryOptions $RetryOptions
+                        }
                     }
                 }
+            
+
+                ## Get custom SSL tracked assets
+                $Certificates = Invoke-ActivityFunction -FunctionName 'Get-CertExpirationQueue'
+                if (($Certificates | Measure-Object).Count -gt 0) {
+                    $CertTasks = foreach ($Certificate in $Certificates) {
+                        if (![string]::IsNullOrEmpty($Certificate)) {
+                            Invoke-DurableActivity -FunctionName 'Invoke-DurableProcessExpiration' -Input ($Certificate | ConvertTo-Json -Depth 10) -NoWait -RetryOptions $RetryOptions
+                        }
+                    }  
+                }
+        
+
+                if ($WebsiteTasks) {
+                    Wait-ActivityFunction -Task $WebsiteTasks
+                }
+
+                if ($CertTasks) {
+                    Wait-ActivityFunction -Task $CertTasks
+                } 
             }
-
-            ## Get custom SSL tracked assets
-            $Certificates = Invoke-ActivityFunction -FunctionName 'Get-CertExpirationQueue'
-            if (($Certificates | Measure-Object).Count -gt 0) {
-                $CertTasks = foreach ($Certificate in $Certificates) {
-                    if (![string]::IsNullOrEmpty($Certificate)) {
-                        Invoke-DurableActivity -FunctionName 'Invoke-DurableProcessExpiration' -Input ($Certificate | ConvertTo-Json -Depth 10) -NoWait -RetryOptions $RetryOptions
-                    }
-                }  
-            }
-
-            if ($WebsiteTasks) {
-                Wait-ActivityFunction -Task $WebsiteTasks
-            }
-
-            if ($CertTasks) {
-                Wait-ActivityFunction -Task $CertTasks
-            } 
-
 
             ## Get PSA tickets
             $Tickets = Invoke-ActivityFunction -FunctionName 'Get-PsaTicketQueue'
             if (($Tickets | Measure-Object).Count -gt 0) {
                 $TicketTasks = foreach ($Ticket in $Tickets) {
-                    if (![string]::IsNullOrEmpty($Certificate)) {
+                    if (![string]::IsNullOrEmpty($Ticket)) {
                         Invoke-DurableActivity -FunctionName 'Invoke-DurableProcessExpiration' -Input ($Ticket | ConvertTo-Json -Depth 10) -NoWait -RetryOptions $RetryOptions
                     }
                 }  
             }
 
             if ($TicketTasks) {
-                Wait-ActivityFunction -Task $CertTasks
+                Wait-ActivityFunction -Task $TicketTasks
             }   
         }
         else {
-            Write-Host "PSA integration is not enabled"
+            Write-Host 'PSA integration is not enabled'
         }
         Write-Host 'Completed.'
     }

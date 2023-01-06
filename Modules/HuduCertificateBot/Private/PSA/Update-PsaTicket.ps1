@@ -16,9 +16,25 @@ function Update-PsaTicket {
                         ID        = $TicketID
                         Operation = 'replace'
                         Path      = 'status'
-                        Value     = ${name = $env:CWM_ResolvedStatus}
+                        Value     = @{name = $env:CWM_ResolvedStatus}
                     }
-                    Update-CWMTicket @UpdateParam -ErrorAction Stop
+                    $x = 0
+                    $Resolved = $false
+                    do {
+                        try {
+                            $x++
+                            Update-CWMTicket @UpdateParam -ErrorAction Stop
+                            $Resolved = $true
+                        }
+                        catch {
+                            $Backoff = 5 * $x
+                            Start-Sleep -Seconds $Backoff
+                        }
+                    } while ($x -lt 4 -and !$Resolved)
+
+                    if (!$Resolved) {
+                        throw "Could not resolve ticket"
+                    }
                 }
             }   
             catch {

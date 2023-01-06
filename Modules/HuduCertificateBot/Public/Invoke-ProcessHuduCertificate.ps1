@@ -2,7 +2,7 @@ function Invoke-ProcessHuduCertificate {
     Param($Certificate) 
     try {
         if (Initialize-HuduApi) { 
-            Write-Output 'Certificate processing'
+            #Write-Output 'Certificate processing'
             #Write-Output ($Certificate | ConvertTo-Json)
 
             $CertInfo = ''
@@ -119,14 +119,14 @@ function Invoke-ProcessHuduCertificate {
                 PartitionKey = 'Certs'                    
                 TableRow     = $CertRow
             }
-            Set-TableData @CertificateUpdate
-            Write-Output 'Certificate Update Complete'
+            Set-TableData @CertificateUpdate | Out-Null
+            #Write-Output 'Certificate Update Complete'
         }
         else {
-            Write-Output 'ERROR: Unable to connect to Hudu'
+            #Write-Output 'ERROR: Unable to connect to Hudu'
         }        
     }
     catch {
-        Write-Output "Exception processing certificates: $($_.Exception.Message)"
+        #Write-Output "Exception processing certificates: $($_.Exception.Message)"
     }
 }

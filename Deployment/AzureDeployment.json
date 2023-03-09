@@ -45,54 +45,63 @@
             }
         },
         "HuduDomainExclusionList": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Comma separated list of domains to exclude"
             }
         },
         "PSATicketAdditionalNotes": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Notes to append ticket initial description"
             }
         },
         "HuduPSAIntegration": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Your PSA Integration name (e.g. cw_manage)"
             }
         },
         "CWM_Server": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Your CWM Server Hostname (e.g. your.cwhostname.com)"
             }
         },
         "CWM_CompanyID": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Your CWM Company ID"
             }
         },
         "CWM_ClientID": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Your CWM Client ID"
             }
         },
         "CWM_PublicKey": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Your CWM Public Key"
             }
         },
         "CWM_PrivateKey": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Your CWM Private Key"
             }
         },
         "CWM_ServiceBoard": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Your CWM Service Board"
@@ -113,12 +122,14 @@
             }
         },
         "CWM_ServiceType": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Your CWM Service Ticket Type"
             }
         },
         "CWM_ServiceSubType": {
+            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Your CWM Service Ticket SubType"
@@ -391,7 +402,7 @@
                 "name": "[variables('serverFarmName')]",
                 "computeMode": "Dynamic"
             }
-        }        
+        }
     ],
     "outputs": {}
 }

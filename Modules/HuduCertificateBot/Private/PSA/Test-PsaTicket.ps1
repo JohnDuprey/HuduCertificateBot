@@ -1,7 +1,7 @@
 function Test-PsaTicket {
     [cmdletbinding()]
     Param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         $TicketID
     )
     switch ($env:HuduPSAIntegration) {
@@ -9,8 +9,7 @@ function Test-PsaTicket {
             try {
                 $Ticket = Get-CWMTicket -id $TicketID -ErrorAction Stop
                 return (!$Ticket.closedFlag -and $Ticket.status.name -ne $env:CWM_ResolvedStatus)
-            }
-            catch { return $false }
+            } catch { return $false }
         }
     }
 }

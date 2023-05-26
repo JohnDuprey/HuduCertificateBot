@@ -1,7 +1,7 @@
 function Invoke-ProcessHuduCertificate {
-    Param($Certificate) 
+    Param($Certificate)
     try {
-        if (Initialize-HuduApi) { 
+        if (Initialize-HuduApi) {
             #Write-Output 'Certificate processing'
             #Write-Output ($Certificate | ConvertTo-Json)
 
@@ -15,7 +15,7 @@ function Invoke-ProcessHuduCertificate {
                     $Url = 'https://{0}' -f $Certificate.name
                     $HttpsCheck = Get-ServerCertificateValidation -Url $Url
                     $CertDetails = $HttpsCheck.Certificate
-                
+
                     $Pem = New-Object System.Text.StringBuilder
                     $Pem.AppendLine('-----BEGIN CERTIFICATE-----')
                     $Pem.AppendLine([System.Convert]::ToBase64String($CertDetails.RawData, 1))
@@ -24,7 +24,7 @@ function Invoke-ProcessHuduCertificate {
                     $SslErrors = foreach ($SslError in $HttpsCheck.SslErrors) {
                         switch ($SslError) {
                             'None' { 'No SSL policy errors.' }
-                            'RemoteCertificateChainErrors' { 
+                            'RemoteCertificateChainErrors' {
                                 $HttpsCheck.Chain.ChainStatus.StatusInformation
                             }
                             'RemoteCertificateNameMismatch' { 'Certificate name mismatch.' }
@@ -34,20 +34,17 @@ function Invoke-ProcessHuduCertificate {
 
                     if ($SslErrors -match 'No SSL policy errors.') {
                         $Callout = 'success'
-                    }
-                    else {
+                    } else {
                         $Callout = 'danger'
                     }
                     $SslLabs = Get-LinkBlock -Url ('https://www.ssllabs.com/ssltest/analyze.html?viaform=on&d={0}&hideResults=on' -f $Certificate.name) -Title 'SSL Labs' -Icon 'fas fa-external-link'
                     $CertInfo = '{0}<p class="callout callout-{1}">{2}</p>' -f $SslLabs, $Callout, ($SslErrors -join '<br />')
-                }
-                catch {
+                } catch {
                     $OrigCertificateString = ($Certificate.fields | Where-Object { $_.label -eq 'Certificate' }).value
                     $CertificateString = $OrigCertificateString -replace '.*-----BEGIN CERTIFICATE-----' -replace '-----END CERTIFICATE-----.*'
                     $CertDetails = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new([System.Convert]::FromBase64String($CertificateString))
                 }
-            }
-            else {
+            } else {
                 $OrigCertificateString = ($Certificate.fields | Where-Object { $_.label -eq 'Certificate' }).value
                 $CertificateString = $OrigCertificateString -replace '.*-----BEGIN CERTIFICATE-----' -replace '-----END CERTIFICATE-----.*'
                 $CertDetails = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new([System.Convert]::FromBase64String($CertificateString))
@@ -58,21 +55,20 @@ function Invoke-ProcessHuduCertificate {
 
             $SubjectProps = [regex]::Split($CertDetails.Subject, $csvSplit, $RegexOptions::ExplicitCapture)
 
-            $Subject = $SubjectProps | ForEach-Object { 
+            $Subject = $SubjectProps | ForEach-Object {
                 $key, $value = $_ -split '='
-                @{$Key = $Value -replace '"' } 
+                @{$Key = $Value -replace '"' }
             }
             try {
-                $IssuerProps = [regex]::Split($CertDetails.Issuer, $csvSplit, $RegexOptions::ExplicitCapture) 
-                $Issuer = $IssuerProps | ForEach-Object { 
+                $IssuerProps = [regex]::Split($CertDetails.Issuer, $csvSplit, $RegexOptions::ExplicitCapture)
+                $Issuer = $IssuerProps | ForEach-Object {
                     $key, $value = $_ -split '='
-                    @{$Key = $Value -replace '"' } 
+                    @{$Key = $Value -replace '"' }
                 }
                 $IssuerName = $Issuer.CN
                 $IssuerOrg = $Issuer.O
                 $IssuerCountry = $Issuer.C
-            }   
-            catch {
+            } catch {
                 $IssuerName = ''
                 $IssuerOrg = ''
                 $IssuerCountry = ''
@@ -116,17 +112,17 @@ function Invoke-ProcessHuduCertificate {
             $CertificateUpdate = @{
                 TableName    = 'HuduCertificates'
                 RowKey       = [string]$Certificate.id
-                PartitionKey = 'Certs'                    
+                PartitionKey = 'Certs'
                 TableRow     = $CertRow
             }
             Set-TableData @CertificateUpdate | Out-Null
             #Write-Output 'Certificate Update Complete'
-        }
-        else {
+        } else {
             #Write-Output 'ERROR: Unable to connect to Hudu'
-        }        
-    }
-    catch {
-        #Write-Output "Exception processing certificates: $($_.Exception.Message)"
+        }
+    } catch {
+        Write-Output "Exception processing certificates: $($_.Exception.Message)"
+    } finally {
+        Remove-Variable $CertDetails
     }
 }

@@ -3,7 +3,7 @@ function Initialize-PsaApi {
     Param()
 
     switch ($env:HuduPSAIntegration) {
-        "cw_manage" {
+        'cw_manage' {
             Import-Module ConnectWiseManageAPI
             $CWMConnectionInfo = @{
                 Server     = $env:CWM_Server

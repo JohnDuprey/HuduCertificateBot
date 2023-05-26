@@ -22,15 +22,14 @@ function New-PsaTicket {
                 if ($env:CWM_ServiceType) {
                     $NewTicketParameters.type = @{ name = $env:CWM_ServiceType }
                 }
-                
+
                 if ($env:CWM_ServiceSubType) {
                     $NewTicketParameters.subType = @{ name = $env:CWM_ServiceSubType }
                 }
 
                 try {
                     $Ticket = New-CWMTicket @NewTicketParameters
-                }
-                catch {}
+                } catch {}
                 $x = 0
 
                 # Handle timeouts
@@ -39,11 +38,10 @@ function New-PsaTicket {
                     $Backoff = $x * 5
                     Start-Sleep -Seconds $Backoff
                     $Ticket = Get-CWMTicket -condition "company/id = $CompanyID and summary = $Summary" -count 1 | Select-Object -First 1
-                } 
+                }
 
                 return $Ticket.id
-            }
-            else { return $false }
+            } else { return $false }
         }
     }
 }

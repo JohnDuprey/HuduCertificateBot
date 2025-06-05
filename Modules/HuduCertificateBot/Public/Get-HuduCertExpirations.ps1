@@ -6,7 +6,7 @@ function Get-HuduCertExpirations {
         foreach ($Asset in $Assets) {
             $Expiry = ($Asset.fields | Where-Object { $_.label -eq 'Cert Expires' }).value
             if (![string]::IsNullOrEmpty($Expiry)) {
-                if ($Expiry -ge (Get-Date) -and $Expiry -le (Get-Date).AddDays(30)) {
+                if ($Expiry -ge (Get-Date) -and $Expiry -le (Get-Date).AddDays(20)) {
                     $Asset
                 }
             }
